@@ -38,3 +38,6 @@ echo "5. Install kube-ps1 - [brew install kube-ps1]"
 echo "6. Install flutter @ $HOME/softwares/flutter directory "
 echo "7. Install gcloud-cli @ $HOME/softwares/gcloud-sdk directory [Refer to https://cloud.google.com/sdk/docs/install-sdk ]"
 echo "8. Copy all gcloud auth json files to $HOME/.gcloud-key-files/ directory "
+echo "9. Set global git configs"
+ehco '      git config --global user.email "you@example.com"'
+echo '      git config --global user.name "Your Name"'
