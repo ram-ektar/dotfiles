@@ -48,3 +48,11 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+# Ram's customizations
+export PATH=/opt/homebrew/opt/openjdk/bin:$HOME/softwares/flutter/bin:$PATH:/opt/homebrew/bin:
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/ram/softwares/google-cloud-sdk/path.bash.inc' ]; then . '/Users/ram/softwares/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/ram/softwares/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/ram/softwares/google-cloud-sdk/completion.bash.inc'; fi
