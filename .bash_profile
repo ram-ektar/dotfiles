@@ -48,12 +48,12 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
 # Ram's customizations
 export FLUTTER_HOME=${HOME}/softwares/flutter
 export ANDROID_HOME=${HOME}/Library/Android/sdk
 export PATH=./:${PATH}:/usr/local/bin:${FLUTTER_HOME}/bin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/bin:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
 export PATH=/opt/homebrew/opt/openjdk/bin:$HOME/softwares/flutter/bin:$PATH:/opt/homebrew/bin:
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -62,15 +62,10 @@ if [ -f '$HOME/softwares/google-cloud-sdk/path.bash.inc' ]; then . '$HOME/softwa
 # The next line enables shell command completion for gcloud.
 if [ -f '$HOME/softwares/google-cloud-sdk/completion.bash.inc' ]; then . '$HOME/softwares/google-cloud-sdk/completion.bash.inc'; fi
 
-# Github container registry settings for publishing images
-export GITHUB_USERNAME=ram-ektar
-export GITHUB_PAT=
 
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 # Google Artifactory settings for publishing images
 export GOOGLE_APPLICATION_CREDENTIALS=${HOME}/.gcloud-key-files/daas-nonprod-project-daas-ci-admin-key.json
-
-alias flutter-json-seriable-run='flutter pub run build_runner build --delete-conflicting-outputs'
-alias flutter-watch-json-seriable='flutter pub run build_runner watch --delete-conflicting-outputs'
 
 function kevents {
     {
@@ -81,4 +76,13 @@ function kevents {
         | column -s $'\t' -t \
         | less -S --use-color
 }
+source <(kubectl completion bash)
 
+
+# Github container registry settings for publishing images
+export GITHUB_USERNAME=ram-ektar
+export GITHUB_PAT=
+
+#alias
+alias flutter-json-seriable-run='flutter pub run build_runner build --delete-conflicting-outputs'
+alias flutter-watch-json-seriable='flutter pub run build_runner watch --delete-conflicting-outputs'

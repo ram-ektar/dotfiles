@@ -26,9 +26,11 @@ else
 fi;
 unset doIt;
 
+echo -e "\n\n-------------------------------------"
 echo "Next steps..."
-echo "1. Install brew"
+echo "1. Install brew [ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" ]"
 echo "2. Install jp - [brew install jq]"
 echo "3. Install kube-ps1 - [brew install kube-ps1]"
 echo "4. Install flutter @ $HOME/softwares/flutter directory"
 echo "5. Install openjdk [brew install openjdk]"
+echo "6. Install gcloud-cli"
