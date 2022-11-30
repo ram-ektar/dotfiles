@@ -62,22 +62,11 @@ if [ -f '$HOME/softwares/google-cloud-sdk/path.bash.inc' ]; then . '$HOME/softwa
 # The next line enables shell command completion for gcloud.
 if [ -f '$HOME/softwares/google-cloud-sdk/completion.bash.inc' ]; then . '$HOME/softwares/google-cloud-sdk/completion.bash.inc'; fi
 
-
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 # Google Artifactory settings for publishing images
 export GOOGLE_APPLICATION_CREDENTIALS=${HOME}/.gcloud-key-files/daas-nonprod-project-daas-ci-admin-key.json
 
-function kevents {
-    {
-        echo $'TIME\tNAMESPACE\tTYPE\tREASON\tOBJECT\tSOURCE\tMESSAGE';
-        kubectl get events -o json "$@" \
-            | jq -r  '.items | map(. + {t: (.eventTime//.lastTimestamp)}) | sort_by(.t)[] | [.t, .metadata.namespace, .type, .reason, .involvedObject.kind + "/" + .involvedObject.name, .source.component + "," + (.source.host//"-"), .message] | @tsv';
-    } \
-        | column -s $'\t' -t \
-        | less -S --use-color
-}
 source <(kubectl completion bash)
-
 
 # Github container registry settings for publishing images
 export GITHUB_USERNAME=ram-ektar
