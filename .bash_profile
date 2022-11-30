@@ -52,7 +52,7 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 export PATH=/opt/homebrew/opt/openjdk/bin:$HOME/softwares/flutter/bin:$PATH:/opt/homebrew/bin:
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ram/softwares/google-cloud-sdk/path.bash.inc' ]; then . '/Users/ram/softwares/google-cloud-sdk/path.bash.inc'; fi
+if [ -f '$HOME/softwares/google-cloud-sdk/path.bash.inc' ]; then . '$HOME/softwares/google-cloud-sdk/path.bash.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/ram/softwares/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/ram/softwares/google-cloud-sdk/completion.bash.inc'; fi
+if [ -f '$HOME/softwares/google-cloud-sdk/completion.bash.inc' ]; then . '$HOME/softwares/google-cloud-sdk/completion.bash.inc'; fi
