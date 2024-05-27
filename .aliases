@@ -146,3 +146,42 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+alias ngnix-restart="brew services restart nginx"
+
+alias az-daas-nonprod-env='kubectl config use-context az-daas-non-prod-cluster'
+alias az-daas-dev-ns='kubectl config set-context --current --namespace daas-dev-ns'
+alias az-daas-uat-ns='kubectl config set-context --current --namespace daas-uat-ns'
+alias az-daas-demo-ns='kubectl config set-context --current --namespace daas-demo-ns'
+
+alias daas-dev-ns='kubectl config set-context --current --namespace daas-dev-namespace'
+alias daas-uat-ns='kubectl config set-context --current --namespace daas-uat-namespace'
+alias daas-demo-ns='kubectl config set-context --current --namespace daas-demo-namespace'
+alias daas-prod-env='kubectl config use-context daas-prod-context'
+alias daas-nonprod-env='kubectl config use-context daas-nonprod-me-cluster'
+
+
+alias st-nonprod-env='kubectl config use-context st-nonprod-in-cluster'
+alias st-dev-ns='kubectl config set-context --current --namespace st-dev-ns'
+alias st-demo-ns='kubectl config set-context --current --namespace st-demo-ns'
+alias st-uat-ns='kubectl config set-context --current --namespace st-uat-ns'
+
+#alias
+alias flutter-json-seriable-run='fvm flutter pub run build_runner build --delete-conflicting-outputs'
+alias flutter-watch-json-seriable='fvm flutter pub run build_runner watch --delete-conflicting-outputs'
+
+alias set-st-services-ektar-origin='cd $HOME/workspaces/optimum-workspace/softtoken-services;git remote remove origin;git remote add origin git@ektartech.github.com:ektar-tech/softtoken-services.git'
+alias set-st-services-optimum-origin='cd $HOME/workspaces/optimum-workspace/softtoken-services;git remote remove origin;git remote add origin git@optimumsg.github.com:optimumsg/softtoken-services.git'
+
+alias set-st-ios-ektar-origin='cd $HOME/workspaces/optimum-workspace/softtoken-ios;git remote remove origin;git remote add origin git@ektartech.github.com:ektar-tech/softtoken-ios.git'
+alias set-st-ios-optimum-origin='cd $HOME/workspaces/optimum-workspace/softtoken-ios;git remote remove origin;git remote add origin git@optimumsg.github.com:optimumsg/softtoken-ios.git'
+
+alias set-st-android-ektar-origin='cd $HOME/workspaces/optimum-workspace/softtoken-android;git remote remove origin;git remote add origin git@ektartech.github.com:ektar-tech/softtoken-android.git'
+alias set-st-android-optimum-origin='cd $HOME/workspaces/optimum-workspace/softtoken-android;git remote remove origin;git remote add origin git@optimumsg.github.com:optimumsg/softtoken-android.git'
+
+alias set-st-react-native-ektar-origin='cd $HOME/workspaces/optimum-workspace/softtoken-react-native;git remote remove origin;git remote add origin git@ektartech.github.com:ektar-tech/softtoken-react-native.git'
+alias set-st-react-native-optimum-origin='cd $HOME/workspaces/optimum-workspace/softtoken-react-native;git remote remove origin;git remote add origin git@optimumsg.github.com:optimumsg/softtoken-react-native.git'
+
+alias kubectl="kubecolor"
+
+alias act='act --env-file .vars --secret-file .secrets --container-architecture linux/amd64 -P ubuntu-latest=daasnonprodartifactory.azurecr.io/daas-docker-registry/ubuntu-az-cli:latest'
+

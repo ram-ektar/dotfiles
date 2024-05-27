@@ -1,5 +1,5 @@
 # Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
+export PATH="$HOME/bin:$PATH:/opt/homebrew/bin/";
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -39,10 +39,20 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+# Add gradle bash completion
+if [ -f $(brew --prefix)/etc/bash_completion.d/gradle ]; then
+  . $(brew --prefix)/etc/bash_completion.d/gradle
+fi
+export GRADLE_COMPLETION_UNQUALIFIED_TASKS="true"
+
 # Enable tab completion for `g` by marking it as an alias for `git`
 if type _git &> /dev/null; then
 	complete -o default -o nospace -F _git g;
 fi;
+
+if [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]; then
+  . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
@@ -55,28 +65,56 @@ complete -W "NSGlobalDomain" defaults;
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
 # Ram's customizations
-export FLUTTER_HOME=${HOME}/softwares/flutter
 export ANDROID_HOME=${HOME}/Library/Android/sdk
-export PATH=./:${PATH}:/usr/local/bin:${FLUTTER_HOME}/bin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/bin:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+#export FLUTTER_HOME=${HOME}/softwares/flutter
+#export PATH=./:${PATH}:/usr/local/bin:${FLUTTER_HOME}/bin:/opt/homebrew/opt/openjdk/bin:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+export PATH=./:${PATH}:/usr/local/bin:/opt/homebrew/opt/openjdk/bin:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 eval "$(/opt/homebrew/bin/brew shellenv)"
-export PATH=/opt/homebrew/opt/openjdk/bin:$HOME/softwares/flutter/bin:$PATH:/opt/homebrew/bin:
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HOME/softwares/google-cloud-sdk/path.bash.inc' ]; then . '$HOME/softwares/google-cloud-sdk/path.bash.inc'; fi
+if [ -f "$HOME/softwares/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/softwares/google-cloud-sdk/path.bash.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '$HOME/softwares/google-cloud-sdk/completion.bash.inc' ]; then . '$HOME/softwares/google-cloud-sdk/completion.bash.inc'; fi
+if [ -f "$HOME/softwares/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/softwares/google-cloud-sdk/completion.bash.inc"; fi
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 # Google Artifactory settings for publishing images
 export GOOGLE_APPLICATION_CREDENTIALS=${HOME}/.gcloud-key-files/daas-nonprod-project-daas-ci-admin-key.json
 
 source <(kubectl completion bash)
+source <(helm completion bash)
 
 # Github container registry settings for publishing images
 export GITHUB_USERNAME=ram-ektar
 export GITHUB_PAT=
 
-#alias
-alias flutter-json-seriable-run='flutter pub run build_runner build --delete-conflicting-outputs'
-alias flutter-watch-json-seriable='flutter pub run build_runner watch --delete-conflicting-outputs'
+
+export JAVA_HOME=`/usr/libexec/java_home -v 21.0.3`
+export PATH=$JAVA_HOME/bin:$PATH
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/ram/softwares/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/ram/softwares/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/ram/softwares/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/ram/softwares/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+## Soft-token project related
+export REGISTRY_LOGIN_SERVER="dgartifactory.azurecr.io"
+export REGISTRY_USERNAME="c547b267-cd8a-42b6-88fe-e6c50baddfdb"
+export REGISTRY_PASSWORD="B6w8Q~H9iapOWyeljThSDuGbFfa7M2pK~POjgc5a"
+
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[ -f /Users/ram/.dart-cli-completion/bash-config.bash ] && . /Users/ram/.dart-cli-completion/bash-config.bash || true
+## [/Completion]
+
