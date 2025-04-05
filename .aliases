@@ -130,10 +130,6 @@ for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 	alias "${method}"="lwp-request -m '${method}'"
 done
 
-# Stuff I never really use but cannot delete either because of http://xkcd.com/530/
-alias stfu="osascript -e 'set volume output muted true'"
-alias pumpitup="osascript -e 'set volume output volume 100'"
-
 # Kill all the tabs in Chrome to free up memory
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
 alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
@@ -148,17 +144,13 @@ alias reload="exec ${SHELL} -l"
 alias path='echo -e ${PATH//:/\\n}'
 alias ngnix-restart="brew services restart nginx"
 
-alias az-daas-nonprod-env='kubectl config use-context az-daas-non-prod-cluster'
-alias az-daas-dev-ns='kubectl config set-context --current --namespace daas-dev-ns'
-alias az-daas-uat-ns='kubectl config set-context --current --namespace daas-uat-ns'
-alias az-daas-demo-ns='kubectl config set-context --current --namespace daas-demo-ns'
+alias daas-nonprod-env='kubectl config use-context az-daas-non-prod-cluster'
+alias daas-dev-ns='kubectl config set-context --current --namespace daas-dev-ns'
+alias daas-uat-ns='kubectl config set-context --current --namespace daas-uat-ns'
+alias daas-demo-ns='kubectl config set-context --current --namespace daas-demo-ns'
 
-alias daas-dev-ns='kubectl config set-context --current --namespace daas-dev-namespace'
-alias daas-uat-ns='kubectl config set-context --current --namespace daas-uat-namespace'
-alias daas-demo-ns='kubectl config set-context --current --namespace daas-demo-namespace'
-alias daas-prod-env='kubectl config use-context daas-prod-context'
-alias daas-nonprod-env='kubectl config use-context daas-nonprod-me-cluster'
-
+alias daas-prod-env='kubectl config use-context daas-prod-cluster'
+alias daas-prod-ns='kubectl config set-context --current --namespace daas-prod-ns'
 
 alias st-nonprod-env='kubectl config use-context st-nonprod-in-cluster'
 alias st-dev-ns='kubectl config set-context --current --namespace st-dev-ns'
@@ -166,22 +158,13 @@ alias st-demo-ns='kubectl config set-context --current --namespace st-demo-ns'
 alias st-uat-ns='kubectl config set-context --current --namespace st-uat-ns'
 
 #alias
-alias flutter-json-seriable-run='fvm flutter pub run build_runner build --delete-conflicting-outputs'
-alias flutter-watch-json-seriable='fvm flutter pub run build_runner watch --delete-conflicting-outputs'
-
-alias set-st-services-ektar-origin='cd $HOME/workspaces/optimum-workspace/softtoken-services;git remote remove origin;git remote add origin git@ektartech.github.com:ektar-tech/softtoken-services.git'
-alias set-st-services-optimum-origin='cd $HOME/workspaces/optimum-workspace/softtoken-services;git remote remove origin;git remote add origin git@optimumsg.github.com:optimumsg/softtoken-services.git'
-
-alias set-st-ios-ektar-origin='cd $HOME/workspaces/optimum-workspace/softtoken-ios;git remote remove origin;git remote add origin git@ektartech.github.com:ektar-tech/softtoken-ios.git'
-alias set-st-ios-optimum-origin='cd $HOME/workspaces/optimum-workspace/softtoken-ios;git remote remove origin;git remote add origin git@optimumsg.github.com:optimumsg/softtoken-ios.git'
-
-alias set-st-android-ektar-origin='cd $HOME/workspaces/optimum-workspace/softtoken-android;git remote remove origin;git remote add origin git@ektartech.github.com:ektar-tech/softtoken-android.git'
-alias set-st-android-optimum-origin='cd $HOME/workspaces/optimum-workspace/softtoken-android;git remote remove origin;git remote add origin git@optimumsg.github.com:optimumsg/softtoken-android.git'
-
-alias set-st-react-native-ektar-origin='cd $HOME/workspaces/optimum-workspace/softtoken-react-native;git remote remove origin;git remote add origin git@ektartech.github.com:ektar-tech/softtoken-react-native.git'
-alias set-st-react-native-optimum-origin='cd $HOME/workspaces/optimum-workspace/softtoken-react-native;git remote remove origin;git remote add origin git@optimumsg.github.com:optimumsg/softtoken-react-native.git'
+alias fflutter="fvm flutter"
+alias fpg="fvm flutter pub get"
+alias flutter-watch-json-seriable='fvm dart run build_runner watch --delete-conflicting-outputs'
+alias old-flutter-watch-json-seriable='fvm flutter pub run build_runner watch --delete-conflicting-outputs'
 
 alias kubectl="kubecolor"
 
-alias act='act --env-file .vars --secret-file .secrets --container-architecture linux/amd64 -P ubuntu-latest=daasnonprodartifactory.azurecr.io/daas-docker-registry/ubuntu-az-cli:latest'
-
+# ACT alias
+alias act='act --var-file $HOME/.act-files/.vars --secret-file $HOME/.act-files/.secrets --container-architecture linux/amd64 -P ubuntu-latest=daasnonprodartifactory.azurecr.io/daas-docker-repository/ubuntu-az-cli:latest'
+alias act-ios='act --var-file $HOME/.act-files/.vars --secret-file $HOME/.act-files/.secrets -P macos-latest=-self-hosted --container-architecture linux/amd64'

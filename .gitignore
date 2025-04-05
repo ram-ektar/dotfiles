@@ -16,3 +16,6 @@ Thumbs.db
 # Exclude all backups
 **/backup/
 **/*.backup
+
+# .my-secrets
+.my-secrets
