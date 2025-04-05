@@ -18,6 +18,7 @@ function doIt() {
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
 	doIt;
+	cp ~/.my-env-vars-and-secrets ~/.my-env-vars-and-secrets-`date +%Y-%m-%d-%H-%M-%S`.backup;
 	cp .my-env-vars-and-secrets-template ~/.my-env-vars-and-secrets;
 	chmod 600 ~/.my-env-vars-and-secrets;
 else
@@ -25,6 +26,7 @@ else
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		doIt;
+		cp ~/.my-env-vars-and-secrets ~/.my-env-vars-and-secrets-`date +%Y-%m-%d-%H-%M-%S`.backup;
 		cp .my-env-vars-and-secrets-template ~/.my-env-vars-and-secrets;
 		chmod 600 ~/.my-env-vars-and-secrets;
 	fi;
