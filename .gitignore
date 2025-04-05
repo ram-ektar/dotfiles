@@ -18,4 +18,4 @@ Thumbs.db
 **/*.backup
 
 # .my-secrets
-.my-secrets
+.my-env-vars-and-secrets
