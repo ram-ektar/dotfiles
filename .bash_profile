@@ -52,15 +52,17 @@ complete -W "NSGlobalDomain" defaults;
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
 # Ram's customizations
+export FLUTTER_SUPPRESS_ANALYTICS=false
 export ANDROID_HOME=${HOME}/Library/Android/sdk
-#export FLUTTER_HOME=${HOME}/softwares/flutter
-#export PATH=./:${PATH}:/usr/local/bin:${FLUTTER_HOME}/bin:/opt/homebrew/opt/openjdk/bin:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-export PATH=./:${PATH}:/usr/local/bin:/opt/homebrew/opt/openjdk/bin:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+export FLUTTER_HOME=${HOME}/softwares/flutter
+export PATH=./:${PATH}:/usr/local/bin:
+export PATH=${PATH}:${FLUTTER_HOME}/bin:
+export PATH=${PATH}:${ANDROID_HOME}/emulator:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin
+
+export JAVA_HOME=`/usr/libexec/java_home -v 21.0.6`
+export PATH=$JAVA_HOME/bin:$PATH
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
-export JAVA_HOME=`/usr/libexec/java_home -v 21.0.3`
-export PATH=$JAVA_HOME/bin:$PATH
 
 # Load secrets into environment variables
 source ~/.my-env-vars-and-secrets

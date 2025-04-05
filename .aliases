@@ -168,3 +168,5 @@ alias kubectl="kubecolor"
 # ACT alias
 alias act='act --var-file $HOME/.act-files/.vars --secret-file $HOME/.act-files/.secrets --container-architecture linux/amd64 -P ubuntu-latest=daasnonprodartifactory.azurecr.io/daas-docker-repository/ubuntu-az-cli:latest'
 alias act-ios='act --var-file $HOME/.act-files/.vars --secret-file $HOME/.act-files/.secrets -P macos-latest=-self-hosted --container-architecture linux/amd64'
+
+alias gpgs='gpg --list-keys --keyid-format=long'

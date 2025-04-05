@@ -24,6 +24,7 @@ brew install act
 brew install azure-cli
 brew install mongodb-community
 brew install node
+brew install gnupg
 
 # Remove outdated versions from the cellar.
 brew cleanup
