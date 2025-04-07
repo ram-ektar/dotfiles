@@ -36,10 +36,8 @@ function update_env_vars() {
 			# If the environment variable exists, use its value
 			if [[ -n "$var_value" ]]; then
 				echo "export $var_name=\"$var_value\"" >> "$output_file"
-				echo "Updated $var_name with current environment value"
 			else
 				# Keep the original line if no environment value is found
-				echo "var: $var_name : no value found, line: [$line], BASH_REMATCH: [${BASH_REMATCH[1]}]"
 				echo "$line" >> "$output_file"
 			fi
 		else
