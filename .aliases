@@ -114,28 +114,10 @@ alias spotoff="sudo mdutil -a -i off"
 # Enable Spotlight
 alias spoton="sudo mdutil -a -i on"
 
-# PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
-alias plistbuddy="/usr/libexec/PlistBuddy"
-
-# Airport CLI alias
-alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
-
-# Intuitive map function
-# For example, to list all directories that contain a certain file:
-# find . -name .gitattributes | map dirname
-alias map="xargs -n1"
-
 # One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 	alias "${method}"="lwp-request -m '${method}'"
 done
-
-# Kill all the tabs in Chrome to free up memory
-# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
-alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
-
-# Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
@@ -170,3 +152,9 @@ alias act='act --var-file $HOME/.act-files/.vars --secret-file $HOME/.act-files/
 alias act-ios='act --var-file $HOME/.act-files/.vars --secret-file $HOME/.act-files/.secrets -P macos-latest=-self-hosted --container-architecture linux/amd64'
 
 alias gpgs='gpg --list-keys --keyid-format=long'
+
+# codebase aliases
+alias eks="cd ~/workspaces/ektar-tech-services-workspace/ekshield/ekshield-services"
+alias iossdk="cd ~/workspaces/ektar-tech-services-workspace/ekshield/ekshield-sdks/ekshield-ios-sdk"
+alias androidsdk="cd ~/workspaces/ektar-tech-services-workspace/ekshield/ekshield-sdks/ekshield-android-sdk"
+alias ekauth="cd ~/workspaces/ektar-tech-services-workspace/ekshield/ektar_authenticator_app"
